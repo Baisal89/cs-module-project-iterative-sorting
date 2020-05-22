@@ -39,9 +39,35 @@ def bubble_sort(arr):
     return arr
 
 
+
+
 # STRETCH: implement the Count Sort function below
+# The maximum was arg was so we could specify the max value
+# The total range if data we'll be sorting sits between 0 and maximum
 def count_sort(arr, maximum=-1):
-    # Your code here
+    if len(arr) == 0:
+        return arr
 
+    # if maximum is not fiven, we will take the max value from the input array
+    if maximum == -1:
+        maximum = max(arr)
 
-    return arr
+    # make bunch if buckets
+    buckets = [0 for _ in range(maximum+1)]        
+
+    for x in arr:
+        if x < 0:
+            return  "Error, negative numbers not allowed"
+        buckets[x] +=1
+
+    # we have the counts of every  value in our input array
+    # loop through our buckets, starting at the smallest index
+    j = 0
+    for i in range(len(buckets)):
+        while buckets[i] > 0:
+            arr[j] = i
+            j += 1
+            buckets[i] -= 1
+
+[1,1,2,4,5,6,2,4,5]
+
